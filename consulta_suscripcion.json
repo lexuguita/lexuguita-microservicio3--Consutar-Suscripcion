@@ -1,0 +1,68 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Consulta de Suscripción",
+    "description": "Devuelve la información de la tarifa actual del usuario.",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8001",
+      "description": "Servidor local para consulta de suscripción"
+    }
+  ],
+  "paths": {
+    "/suscripcion/{usuarioId}": {
+      "get": {
+        "summary": "Consultar suscripción",
+        "description": "Devuelve la información de la tarifa actual del usuario.",
+        "parameters": [
+          {
+            "name": "usuarioId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Identificador único del usuario."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Información de la suscripción obtenida exitosamente.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "usuarioId": {
+                      "type": "string"
+                    },
+                    "tarifa": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Usuario no encontrado.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "detail": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
